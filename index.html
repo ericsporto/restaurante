@@ -52,8 +52,9 @@
                            
                         </template>
                     </div>
-                    <div class="d-flex justify-content-end" >
+                    <div class="d-flex justify-content-end flex-column" >
                         <p> <strong> Total:$ {{ total() }}</strong> </p>
+                        <p> <strong> Total x 10%: $ {{ percent() }}</strong> </p>
                         
                     </div>
                 </div>
@@ -84,6 +85,7 @@
                     clients: [],
                     products: window.products,
                     submit: true,
+                    percents: []
                     
                 }
             }, methods: {
@@ -106,6 +108,20 @@
                     return total.toFixed(2)
                 },
 
+                percent() {
+                    var total = 0;
+
+                    this.products.forEach(item => {
+                        if(item.quantity > 0) {
+                            total =+ item.price * item.quantity * 0.1
+                            
+                        }                          
+                    });
+                    return total.toFixed(2)
+
+                    
+                },
+
                 
             
                 
@@ -119,9 +135,7 @@
         body {
             background-color: rgb(218, 218, 243);
         }
-        h1 {
-            color: blue;
-        }
+
 
     </style>
     
